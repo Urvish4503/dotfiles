@@ -65,6 +65,21 @@ return {
             suppressed_dirs = { "~/", "/" },
         },
     },
+
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("lsp_signature").setup({
+                bind = true,
+                floating_window = true, -- show in floating window
+                hint_enable = true,     -- disable inline hints
+                handler_opts = {
+                    border = "single"
+                }
+            })
+        end
+    },
     {
         "kylechui/nvim-surround",
         version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
