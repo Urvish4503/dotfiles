@@ -1,6 +1,6 @@
 -- Leader keys
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- Line numbers
@@ -10,15 +10,14 @@ vim.o.relativenumber = true
 vim.opt.timeoutlen = 1000
 
 -- Mouse support
-vim.o.mouse = 'a'
-
+vim.o.mouse = "a"
 
 -- Don't show mode in command line
 vim.o.showmode = false
 
 -- Clipboard integration
 vim.schedule(function()
-    vim.o.clipboard = 'unnamedplus'
+	vim.o.clipboard = "unnamedplus"
 end)
 
 -- Indentation
@@ -34,7 +33,7 @@ vim.o.smartcase = true
 vim.opt.termguicolors = true
 
 -- UI elements
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 
 -- Timing
 vim.o.updatetime = 250
@@ -51,11 +50,11 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
 -- Live substitution preview
-vim.o.inccommand = 'split'
+vim.o.inccommand = "split"
 
 -- Visual aids
 vim.o.cursorline = true
-vim.o.scrolloff = 10
+vim.o.scrolloff = 999
 
 -- Confirmation dialogs
 vim.o.confirm = true
