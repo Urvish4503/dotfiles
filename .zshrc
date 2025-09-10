@@ -1,8 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=""
 
-
-autoload -U promptinit; promptinit
-prompt pure
 
 plugins=( 
     git
@@ -31,6 +29,9 @@ setopt appendhistory
 
 fpath+=($HOME/.zsh/pure)
 
+autoload -U promptinit; promptinit
+prompt pure
+#
 # Set-up icons for files/folders in terminal using eza
 alias ls='eza -a --icons'
 alias ll='eza -al --icons'
@@ -39,8 +40,6 @@ alias lt='eza -a --tree --level=1 --icons'
 alias e='exit'
 alias c='clear'
 alias v='nvim'
-alias get='sudo dnf install'
-alias U='sudo dnf update && sudo dnf upgrade'
 alias ..='cd ..'
 alias ...='cd ../..'
 
