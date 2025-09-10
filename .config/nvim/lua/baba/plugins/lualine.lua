@@ -15,7 +15,7 @@ return {
 			modified = "󰝤 ",
 			modified_simple = "~ ",
 			removed = " ",
-			lock = "",
+			lock = " ",
 		}
 		local condition = {
 			is_buf_empty = function()
@@ -124,11 +124,11 @@ return {
 
 		-- Right
 		status_x({
-
 			"copilot",
 			show_colors = true,
 			show_loading = true,
 		})
+
 		status_x({
 			"diagnostics",
 			sources = { "nvim_lsp", "nvim_diagnostic" },

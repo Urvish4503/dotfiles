@@ -1,9 +1,3 @@
-// ──────────────────────────────────────────────────────────────────────────
-//  °˖* ૮(  • ᴗ ｡)っ🍸  pewdiepie/archdaemon/dionysh
-//  shhheersh
-//  Waybar config
-//  vers. 1.0
-// ──────────────────────────────────────────────────────────────────────────
 {
     "position": "top",
     "layer": "top",
@@ -13,9 +7,16 @@
     "margin-left": 0,
     "margin-right": 0,
     "spacing": 0,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": [],
-    "modules-right": [],
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+        "network",
+        "battery",
+    ],
     
     "hyprland/workspaces": {
         "format": "{id}",
@@ -34,7 +35,50 @@
             "4": [],
             "5": []
         }
-    }
+    },
+
+
+   "battery": {
+     "format": "{icon}  {capacity}%",
+     "format-icons": {
+       "charging": [
+         "󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋","󰂅"
+       ],
+       "default": [
+         "󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"
+       ]
+     },
+     "format-full": "Charged ",
+     "interval": 5,
+     "states": {
+       "warning": 20,
+       "critical": 10
+     },
+     "tooltip": true
+   },
+
+
+   // ── Clock ────────────────────────────────────────────────────────
+   "clock": {
+     "tooltip-format": "{calendar}",
+     "format-alt": "  {:%a, %d %b %Y}",
+     "format": "[   {:%I:%M %p} ]"
+   },
+ 
+   // ── Network ──────────────────────────────────────────────────────
+   "network": {
+     "format-wifi": "{icon}",
+     "format-icons": ["[ 󰤯 ]", "[ 󰤟 ]", "[ 󰤢 ]", "[ 󰤥 ]", "[ 󰤨 ]"],
+     "format-ethernet": "󰀂",
+     "format-alt": "󱛇",
+     "format-disconnected": "󰖪",
+     "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+     "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+     "tooltip-format-disconnected": "Disconnected",
+     "on-click": "nm-connection-editor",
+     "interval": 5,
+     "nospacing": 1
+   },
 }
 
 // {
