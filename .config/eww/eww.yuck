@@ -1,1 +1,9 @@
-(include "widgets/music-widget.yuck")
+(include "./widgets/power.yuck")
+
+(defwindow power-panel
+  :monitor 0
+  :geometry (geometry :x "center" :y "center" :width "200px" :height "50px")
+  :stacking "fg"
+  :windowtype "dock"
+  :reserve (side :top :distance "60px")
+  (power-panel))

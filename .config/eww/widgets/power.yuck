@@ -1,0 +1,21 @@
+(defwidget power-panel []
+  (box :class "power-panel" :orientation "h" :spacing 10
+    (button :class "shutdown-btn" :onclick "systemctl poweroff"
+      (label :text "")) ;; Power icon
+    (button :class "logout-btn" :onclick "loginctl terminate-user $USER"
+      (label :text "")) ;; Logout icon
+    (button :class "lock-btn" :onclick "swaylock"
+      (label :text "")) ;; Lock icon
+    (button :class "reboot-btn" :onclick "systemctl reboot"
+      (label :text "")) ;; Reboot icon
+    (button :class "sleep-btn" :onclick "systemctl suspend"
+      (label :text "")) ;; Sleep icon
+  ))
+
+(defwindow power-panel
+  :monitor 0
+  :geometry (geometry :x "center" :y "center" :width "200px" :height "50px")
+  :stacking "fg"
+  :windowtype "dock"
+  :reserve (struts :distance "60px" :side "top")
+  (power-panel))

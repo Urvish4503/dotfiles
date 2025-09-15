@@ -1,99 +1,68 @@
 {
-	"layer": "top",
-	"position": "top",
-	"mod": "dock",
-	"exclusive": true,
-	"passthrough": false,
-	"gtk-layer-shell": true,
+	/* ------ Size ------ */
 	"height": 35,
-	"modules-left": [
-        "hyprland/workspaces",
-        "tray",
-    ],
-    "modules-center": [
-		"clock"
-    ],
-	"modules-right": [
-		"pulseaudio",
+  "width": "100%",
+
+	/* ------ Position ------ */
+  "layer": "top",
+  "position": "top",
+
+	/* ------ Margin ------ */
+  "margin-right": 10,
+  "margin-left": 10,
+	"margin-top": 5,
+	"margin-bottom": 0,
+
+	/* ------ Modules ------ */
+  "modules-left": [
+      "hyprland/workspaces",
+  ],
+  "modules-center": [
+      "clock"
+  ],
+  "modules-right": [
+      "backlight",
+      "pulseaudio",
         "pulseaudio#microphone",
-		"backlight",
-		"network",
         "bluetooth",
-		"battery"
-	],
-	"hyprland/window": {
-		"format": "{}"
-	},
+      "network",
+      "battery",
+        "custom/power"
+  ],
 
-	"workspace": {
-		"format": " {}",
-		"disable-scroll": false
-	},
-
-	"hyprland/workspaces": {
-		"disable-scroll": true,
-		"all-outputs": true,
-		"format": "{icon}",
-		"on-click": "activate",
-		"persistent-workspaces": {
-			"1": [],
-			"2": [],
-			"3": []
-		},
-		"format-icons": {
-			"active": "  ",
-			"persistent": "  ",
-			"default": "  "
-		}
-	},
-
-
-	"tray": {
-		"icon-size": 18,
-		"spacing": 10
-	},
-
-	"clock": {
-		"format": " {:%I:%M %p}",
-		"tooltip-format": "<tt>{calendar}</tt>",
-		"calendar": {
-			"mode": "month",
-			"mode-mon-col": 3,
-			"on-scroll": 1,
-			"on-click-right": "mode",
-			"format": {
-				"months": "<span color='#BAC2DE'><b>{}</b></span>",
-				"weekdays": "<span color='#89B4FA'><b>{}</b></span>",
-				"today": "<span color='#F38BA8'><b>{}</b></span>"
-			}
-		}
-	},
-
+	/* ------ Defining Modules ------ */
+	/* ------ Hyprland Workspaces ------ */
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    },
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "eDP-1": [1, 2, 3, 4, 5]
+    },
+  },
+	/* ------ Brightness ------ */
 	"backlight": {
-		"device": "intel_backlight",
 		"format": "{icon} {percent}%",
 		"format-icons": ["󰃞", "󰃟", "󰃠"],
-		"on-scroll-up": "brightnessctl set 5%+",
-		"on-scroll-down": "brightnessctl set 5%-",
-		"min-length": 6
+		"on-scroll-up": "brightnessctl set 1%+",
+		"on-scroll-down": "brightnessctl set 1%-"
 	},
 
-	"battery": {
-		"states": {
-			"good": 95,
-			"warning": 30,
-			"critical": 20
-		},
-		"format": "{icon} {capacity}%",
-		"format-charging": " {capacity}%",
-		"format-plugged": " {capacity}%",
-		"format-alt": "{time} {icon}",
-		"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-	},
-
+	/* ------ Volume ------ */
 	"pulseaudio": {
-		"format": "{icon} {volume}%",
 		"tooltip": false,
+		"format": "{icon} {volume}%",
 		"format-muted": " Muted",
 		"on-click": "pamixer -t",
 		"on-scroll-up": "pamixer -i 1",
@@ -101,11 +70,6 @@
 		"scroll-step": 1,
 		"format-icons": {
 			"headphone": "",
-			"hands-free": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
 			"default": ["", "", ""]
 		}
 	},
@@ -120,27 +84,60 @@
 		"scroll-step": 5
 	},
 
-	"temperature": {
-		"thermal-zone": 1,
-		"format": "{temperatureF}°F ",
-		"critical-threshold": 80,
-		"format-critical": "{temperatureC}°C "
-	},
-
+	/* ------ Network ------ */
 	"network": {
-		"format-wifi": "  {signalStrength}%",
-		"format-ethernet": "{ipaddr}/{cidr}",
-		"tooltip-format": "{essid} - {ifname} via {gwaddr}",
-		"format-linked": "{ifname} (No IP)",
+        "format-wifi": "  {essid}",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "format-alt": "{essid} {signalStrength}%",
 		"format-disconnected": "Disconnected ⚠",
+        "tooltip": true,
+        "tooltip-format-wifi": "Signal: {signalStrength}%"
 	},
 
-	"bluetooth": {
-		"format": " {status}",
-		"format-disabled": "", // an empty format will hide the module
-		"format-connected": " {num_connections}",
-		"tooltip-format": "{device_alias}",
-		"tooltip-format-connected": " {device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}"
+      "bluetooth": {
+        "format": "󰂯 {status}",  // Icon and status (e.g., "on", "off")
+        "format-connected": "󰂯 {device_alias}",  // Show connected device name
+        "format-connected-battery": "󰂯 {device_alias} ({device_battery_percentage}%)",  // Show battery if available
+        "tooltip-format": "{controller_alias}: {controller_address}\n{num_connections} device(s) connected",
+        "tooltip-format-connected": "{controller_alias}: {controller_address}\n{num_connections} device(s)\n\n{device_alias}: {device_address}",
+        "on-click": "blueman-manager",  // Open GUI manager (or use "bluetoothctl" for terminal)
+        "on-click-right": "rfkill toggle bluetooth"  // Toggle Bluetooth on/off
+      },
+
+	/* ------ Battery ------ */
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 20
+		},
+		"format": "{icon} {capacity}%",
+		"format-charging": " {capacity}%",
+		"format-plugged": " {capacity}%",
+		"format-alt": "{time} {icon}",
+		"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
 	},
+
+
+	/* ------ Clock ------ */
+	"clock": {
+		"format": " {:%I:%M %p}",
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 3,
+			"on-scroll": 1,
+			"on-click-right": "mode",
+			"format": {
+				"months": "<span color='#b6beca'><b>{}</b></span>",
+				"weekdays": "<span color='#75aaf0'><b>{}</b></span>",
+				"today": "<span color='#e05f65'><b>{}</b></span>"
+			}
+		}
+	},
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false
+    },
 }

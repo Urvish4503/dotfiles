@@ -1,0 +1,58 @@
+.power-panel {
+  background-color: #191724; /* Crust */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.shutdown-btn, .logout-btn, .lock-btn, .reboot-btn, .sleep-btn {
+  border-radius: 5px;
+  padding: 8px;
+  min-width: 32px;
+  min-height: 32px;
+  transition: background-color 0.2s ease;
+}
+
+.shutdown-btn {
+  background-color: #E82424; /* Red */
+  color: #CAD3F5; /* Text */
+}
+
+.shutdown-btn:hover {
+  background-color: #C34043; /* Maroon for hover */
+}
+
+.logout-btn {
+  background-color: #957FB8; /* Mauve */
+  color: #CAD3F5; /* Text */
+}
+
+.logout-btn:hover {
+  background-color: #A4A4D5; /* Lighter Mauve */
+}
+
+.lock-btn {
+  background-color: #3E8FB0; /* Sapphire */
+  color: #CAD3F5; /* Text */
+}
+
+.lock-btn:hover {
+  background-color: #4A9FC1; /* Lighter Sapphire */
+}
+
+.reboot-btn {
+  background-color: #76946A; /* Green */
+  color: #CAD3F5; /* Text */
+}
+
+.reboot-btn:hover {
+  background-color: #8AA87A; /* Lighter Green */
+}
+
+.sleep-btn {
+  background-color: #B7BDF8; /* Lavender */
+  color: #CAD3F5; /* Text */
+}
+
+.sleep-btn:hover {
+  background-color: #C5CBFA; /* Lighter Lavender */
+}
