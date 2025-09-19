@@ -16,11 +16,13 @@
 	/* ------ Modules ------ */
   "modules-left": [
       "hyprland/workspaces",
+      "custom/spotify"
   ],
   "modules-center": [
       "clock"
   ],
   "modules-right": [
+      "wlr/taskbar",
       "backlight",
       "pulseaudio",
         "pulseaudio#microphone",
@@ -49,9 +51,10 @@
     "on-click": "activate",
     "persistent-workspaces": {
       "eDP-1": [1, 2, 3, 4, 5]
-    },
-  },
-	/* ------ Brightness ------ */
+        },
+    }, 
+
+  /* ------ Brightness ------ */
 	"backlight": {
 		"format": "{icon} {percent}%",
 		"format-icons": ["󰃞", "󰃟", "󰃠"],
@@ -63,7 +66,7 @@
 	"pulseaudio": {
 		"tooltip": false,
 		"format": "{icon} {volume}%",
-		"format-muted": " Muted",
+		"format-muted": "󰸈 Muted",
 		"on-click": "pamixer -t",
 		"on-scroll-up": "pamixer -i 1",
 		"on-scroll-down": "pamixer -d 1",
@@ -87,11 +90,13 @@
 	/* ------ Network ------ */
 	"network": {
         "format-wifi": "  {essid}",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "format-alt": "{essid} {signalStrength}%",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
 		"format-disconnected": "Disconnected ⚠",
         "tooltip": true,
-        "tooltip-format-wifi": "Signal: {signalStrength}%"
+        "tooltip-format-wifi": "WiFi: {essid} | Signal: {signalStrength}% ({signaldBm} dBm) | Down: {bandwidthDownBytes} B/s | Up: {bandwidthUpBytes} B/s",
+        "tooltip-format-ethernet": "Ethernet: Connected | Down: {bandwidthDownBytes} B/s | Up: {bandwidthUpBytes} B/s",
+        "on-click": "kitty --class nmtui --override initial_window_height=400 --override initial_window_width=700 nmtui",
+        "interval": 5,
 	},
 
       "bluetooth": {
@@ -107,14 +112,14 @@
 	/* ------ Battery ------ */
 	"battery": {
 		"states": {
-			"good": 95,
+			"good": 90,
 			"warning": 30,
 			"critical": 20
 		},
 		"format": "{icon} {capacity}%",
 		"format-charging": " {capacity}%",
 		"format-plugged": " {capacity}%",
-		"format-alt": "{time} {icon}",
+		"format-alt": "{icon}",
 		"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
 	},
 
@@ -138,6 +143,47 @@
 
     "custom/power": {
         "format": "",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "$HOME/dotfiles/.config/waybar/scripts/power.sh",
+        "on-click-right": "systemctl poweroff",
     },
+
+	"wlr/taskbar": {
+// "wlr/taskbar": {
+//         "format": "{icon}",          // Show only the app icon
+//         "icon-size": 16,             // Adjust icon size (e.g., 16-24px)
+//         "tooltip": false,            // Disable tooltips to keep it minimal
+//         "on-click": "activate",      // Left-click to focus
+//         "on-click-middle": "close",  // Middle-click to close
+//         "on-click-right": "minimize" // Right-click to minimize
+//     }
+		"format": "{icon}",
+        "spacing": 0,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"ignore-list": [
+            "kitty",
+            "zen",
+            "Spotify",
+		],
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition"
+		}
+	},
+
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 $HOME/dotfiles/.config/waybar/scripts/mediaplayer.py --player spotify",
+        "format": " {}",
+        "return-type": "json",
+        "on-click": "playerctl previous --player spotify",
+        "on-click-middle": "playerctl play-pause --player spotify",
+        "on-click-right": "playerctl next --player spotify",
+        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -p spotify i",
+        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -p spotify d",
+        "max-length": 25,
+        "escape": true,
+        "tooltip": true
+    },
+
 }

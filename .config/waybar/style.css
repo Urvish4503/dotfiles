@@ -9,12 +9,25 @@
 window#waybar {
   color: #cdd6f4;
   background: #191724;
-  border-radius: 0.5rem;
 }
 
 /* workspaces module styles */
-#workspaces {
-  margin: 0 10px;
+#workspaces,
+#custom-system-monitor {
+  margin: 0px 10px;
+}
+
+#custom-system-monitor {
+    padding: 0 10px;
+    color: #cdd6f4; /* Text (Mocha) */
+    background-color: #1e1e2e; /* Base (Mocha) */
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+#custom-system-monitor:hover {
+    background-color: #313244; /* Surface 1 (Mocha) */
+    color: #f5e0dc; /* Flamingo (Mocha) for hover */
 }
 
 /* For workspace button*/
@@ -52,6 +65,7 @@ window#waybar {
     50% { opacity: 0; }
 }
 
+#backlight,
 #battery,
 #network,
 #bluetooth,
@@ -91,4 +105,26 @@ window#waybar {
 #custom-power {
   color: #b4befe;
   margin-right: 20px;
+}
+
+
+/* Main taskbar container */
+#taskbar {
+    background: transparent; /* No background */
+    padding: 0;                  /* No padding */
+}
+
+#taskbar.empty {
+    min-width: 0;                /* Collapse when empty */
+    background: transparent; /* No background */
+    background-color: transparent; /* No background */
+}
+
+#taskbar button {
+    background: transparent;
+}
+
+#taskbar button:focus,
+#taskbar button:active {
+    outline: none;
 }
