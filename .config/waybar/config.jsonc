@@ -149,19 +149,12 @@
     },
 
 	"wlr/taskbar": {
-// "wlr/taskbar": {
-//         "format": "{icon}",          // Show only the app icon
-//         "icon-size": 16,             // Adjust icon size (e.g., 16-24px)
-//         "tooltip": false,            // Disable tooltips to keep it minimal
-//         "on-click": "activate",      // Left-click to focus
-//         "on-click-middle": "close",  // Middle-click to close
-//         "on-click-right": "minimize" // Right-click to minimize
-//     }
 		"format": "{icon}",
         "spacing": 0,
 		"tooltip-format": "{title}",
 		"on-click": "activate",
 		"on-click-middle": "close",
+		"on-click-right": "close",
 		"ignore-list": [
             "kitty",
             "zen",

@@ -70,7 +70,8 @@ window#waybar {
 #network,
 #bluetooth,
 #pulseaudio,
-#custom-power {
+#custom-power,
+#taskbar {
   margin-left: 20px;
 }
 
@@ -108,23 +109,22 @@ window#waybar {
 }
 
 
-/* Main taskbar container */
-#taskbar {
-    background: transparent; /* No background */
-    padding: 0;                  /* No padding */
-}
-
+/* Empty taskbar */
 #taskbar.empty {
-    min-width: 0;                /* Collapse when empty */
-    background: transparent; /* No background */
-    background-color: transparent; /* No background */
+    min-width: 0;
 }
 
+/* General button style */
 #taskbar button {
-    background: transparent;
+    margin-left: 2px;
 }
 
+/* Interactive states */
 #taskbar button:focus,
+#taskbar button:hover,
 #taskbar button:active {
-    outline: none;
+    background: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    box-shadow: none;
 }

@@ -2,9 +2,7 @@
 
 
 # define functions
-
-print_error ()
-{
+print_error () {
 cat << "EOF"
     ./volumecontrol.sh -[device] <actions>
     ...valid device are...
@@ -19,10 +17,10 @@ EOF
 exit 1
 }
 
+
 notify_vol ()
 {
-    bar=$(seq -s "." $(($vol / 15)) | sed 's/[0-9]//g')
-    dunstify "${vol}${bar}" "${nsink}" -r 91190 -t 800
+    dunstify "${nsink}: ${vol}%" -r 91190 -t 1000
 }
 
 notify_mute ()
@@ -30,9 +28,9 @@ notify_mute ()
     mute=$(pamixer "${srce}" --get-mute | cat)
     [ "${srce}" == "--default-source" ] && dvce="mic" || dvce="speaker"
     if [ "${mute}" == "true" ] ; then
-        dunstify "muted" "${nsink}" -r 91190 -t 1000
+        dunstify "${nsink}: Muted" -r 91190 -t 1000
     else
-        dunstify "unmuted" "${nsink}" -r 91190 -t 1000
+        dunstify "${nsink}: Unmuted" -r 91190 -t 1000
     fi
 }
 
